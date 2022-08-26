@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cli-deployment
+  labels:
+    app: defne-cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: defne-cli
+  template:
+    metadata:
+      labels:
+        app: defne-cli
+    spec:
+      containers:
+      - name: defne-cli
+        image: lab.defne.com.tr:8443/cli-service:1.0.0
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: labdefne
